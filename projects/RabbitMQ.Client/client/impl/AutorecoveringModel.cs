@@ -200,10 +200,10 @@ namespace RabbitMQ.Client.Impl
             }
         }
 
-        public event EventHandler<EventArgs> Recovery
+        public event EventHandler<EventArgs> RecoverySucceeded
         {
-            add { RecoveryAwareDelegate.Recovery += value; }
-            remove { RecoveryAwareDelegate.Recovery -= value; }
+            add { RecoveryAwareDelegate.RecoverySucceeded += value; }
+            remove { RecoveryAwareDelegate.RecoverySucceeded -= value; }
         }
 
         public int ChannelNumber => Delegate.ChannelNumber;

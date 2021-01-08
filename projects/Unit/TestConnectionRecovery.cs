@@ -98,7 +98,7 @@ namespace RabbitMQ.Client.Unit
             Assert.IsTrue(_model.IsOpen);
             // ack the message after recovery - this should be out of range and ignored
             _model.BasicAck(g.DeliveryTag, false);
-            // do a sync operation to 'check' there is no channel exception 
+            // do a sync operation to 'check' there is no channel exception
             _model.BasicGet(q, false);
         }
 
@@ -610,7 +610,7 @@ namespace RabbitMQ.Client.Unit
         public void TestRecoveryEventHandlersOnChannel()
         {
             int counter = 0;
-            ((AutorecoveringModel)_model).Recovery += (source, ea) => Interlocked.Increment(ref counter);
+            ((AutorecoveringModel)_model).RecoverySucceeded += (source, ea) => Interlocked.Increment(ref counter);
 
             CloseAndWaitForRecovery();
             CloseAndWaitForRecovery();
@@ -623,7 +623,7 @@ namespace RabbitMQ.Client.Unit
         public void TestRecoveryEventHandlersOnConnection()
         {
             int counter = 0;
-            ((AutorecoveringConnection)_conn).RecoverySucceeded += (source, ea) => Interlocked.Increment(ref counter);
+            ((IRecoverable)_conn).RecoverySucceeded += (source, ea) => Interlocked.Increment(ref counter);
 
             CloseAndWaitForRecovery();
             CloseAndWaitForRecovery();
@@ -638,7 +638,7 @@ namespace RabbitMQ.Client.Unit
         public void TestRecoveryEventHandlersOnModel()
         {
             int counter = 0;
-            ((AutorecoveringModel)_model).Recovery += (source, ea) => Interlocked.Increment(ref counter);
+            ((AutorecoveringModel)_model).RecoverySucceeded += (source, ea) => Interlocked.Increment(ref counter);
 
             CloseAndWaitForRecovery();
             CloseAndWaitForRecovery();

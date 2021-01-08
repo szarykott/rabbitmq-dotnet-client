@@ -38,6 +38,6 @@ namespace RabbitMQ.Client
     /// </summary>
     public interface IRecoverable
     {
-        event EventHandler<EventArgs> Recovery;
+        event EventHandler<EventArgs> RecoverySucceeded;
     }
 }

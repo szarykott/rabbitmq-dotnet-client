@@ -172,7 +172,7 @@ namespace RabbitMQ.Client.Impl
         }
         private EventingWrapper<ShutdownEventArgs> _modelShutdownWrapper;
 
-        public event EventHandler<EventArgs> Recovery
+        public event EventHandler<EventArgs> RecoverySucceeded
         {
             add => _recoveryWrapper.AddHandler(value);
             remove => _recoveryWrapper.RemoveHandler(value);
